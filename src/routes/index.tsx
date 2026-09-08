@@ -11,7 +11,7 @@ import { Contact, Footer } from "@/components/vidyarthi/Contact";
 
 const title = "Vidyarthi — Ancient Wisdom. Modern Solutions.";
 const description =
-  "Vidyarthi is a digital solutions studio building websites, custom business software, AI tools and automation around the way your business actually works.";
+  "Vidyarthi is a digital solutions studio building bespoke websites, custom business software, and AI-powered automation around the way your business actually works.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,9 +29,9 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="bg-background">
+    <div className="min-h-screen bg-background text-foreground selection:bg-gold selection:text-background">
       <Nav />
-      <main>
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <Hero />
         <Philosophy />
         <Services />
