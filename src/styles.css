@@ -1,21 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap");
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
 /*
- * Vidyarthi design system — Ancient Wisdom x Modern Technology.
- * Charcoal + Ivory + Antique Gold, with sparing Electric Teal.
+ * ============================================================================
+ * VIDYARTHI DESIGN SYSTEM — V2 DUAL THEME PRODUCTION FOUNDATION
+ * Philosophy: Ancient Wisdom × Modern Technology
+ *
+ * DARK THEME (Obsidian):
+ * Base Background: #11100E | Ivory Text: #F2EDE3 | Antique Gold: #C6A15B
+ * Deep Forest: #26382D | Electric Teal: #5CE1E6 | Stone: #9C968B | Card: #191815
+ *
+ * LIGHT THEME (Warm Architectural Parchment Editorial):
+ * Primary Background: #E8E0D0 | Secondary / Card: #F2EDE3 | Primary Text: #11100E
+ * Secondary Text: #5E5A52 | Antique Gold: #C6A15B | Deep Forest: #26382D | Architectural Teal: #278F94
+ * ============================================================================
  */
 
 @theme inline {
+  --radius-xs: 0.0625rem;
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
   --radius-xl: calc(var(--radius) + 6px);
 
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  /* Typography */
+  --font-serif: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
+  /* Theme Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -36,63 +52,209 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  /* Vidyarthi Brand Tokens */
+  --color-obsidian: var(--obsidian);
+  --color-ivory: var(--ivory);
   --color-gold: var(--gold);
-  --color-teal: var(--teal);
+  --color-gold-hover: var(--gold-hover);
+  --color-gold-muted: var(--gold-muted);
   --color-forest: var(--forest);
-  --color-parchment: var(--parchment);
+  --color-forest-deep: var(--forest-deep);
+  --color-teal: var(--teal);
+  --color-teal-glow: var(--teal-glow);
   --color-stone: var(--stone);
+  --color-parchment: var(--parchment);
 
-  --shadow-lift: 0 24px 60px -30px oklch(0 0 0 / 0.9);
+  /* Shadows */
+  --shadow-lift: var(--shadow-lift-token);
   --shadow-glow-gold: 0 0 40px -12px var(--gold);
   --shadow-glow-teal: 0 0 44px -14px var(--teal);
+  --shadow-architectural: var(--shadow-arch-token);
 
+  /* Easing Curves */
   --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-sharp: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-:root {
+/* ============================================================================
+ * DARK THEME VARIABLES (Default & html.dark / [data-theme="dark"])
+ * ============================================================================ */
+:root,
+:root.dark,
+html.dark,
+html[data-theme="dark"],
+body.dark,
+[data-theme="dark"] {
   --radius: 0.125rem;
 
-  /* #11100E */
-  --background: oklch(0.163 0.006 67);
-  /* #F2EDE3 */
-  --foreground: oklch(0.944 0.014 86);
-  --card: oklch(0.203 0.007 67);
-  --card-foreground: oklch(0.944 0.014 86);
-  --popover: oklch(0.203 0.007 67);
-  --popover-foreground: oklch(0.944 0.014 86);
-  /* #C6A15B */
-  --primary: oklch(0.717 0.083 78);
-  --primary-foreground: oklch(0.163 0.006 67);
-  --secondary: oklch(0.24 0.008 67);
-  --secondary-foreground: oklch(0.944 0.014 86);
-  --muted: oklch(0.24 0.008 67);
-  /* #9C968B */
-  --muted-foreground: oklch(0.657 0.011 82);
-  --accent: oklch(0.26 0.01 78);
-  --accent-foreground: oklch(0.944 0.014 86);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.944 0.014 86);
-  --border: oklch(0.944 0.014 86 / 0.12);
-  --input: oklch(0.944 0.014 86 / 0.16);
-  --ring: oklch(0.717 0.083 78 / 0.5);
+  /* Obsidian base: #11100E */
+  --obsidian: #11100e;
+  --background: #11100e;
 
-  --gold: oklch(0.717 0.083 78);
-  /* #5CE1E6 */
-  --teal: oklch(0.861 0.109 195);
-  /* #26382D */
-  --forest: oklch(0.335 0.031 156);
-  /* #E8E0D0 */
-  --parchment: oklch(0.903 0.02 86);
-  --stone: oklch(0.657 0.011 82);
+  /* Parchment/Ivory text: #F2EDE3 */
+  --ivory: #f2ede3;
+  --foreground: #f2ede3;
+
+  /* Cards & Elevators */
+  --card: #191815;
+  --card-foreground: #f2ede3;
+  --popover: #191815;
+  --popover-foreground: #f2ede3;
+
+  /* Antique Gold: #C6A15B */
+  --gold: #c6a15b;
+  --gold-hover: #d4b06a;
+  --gold-muted: rgba(198, 161, 91, 0.25);
+  --primary: #c6a15b;
+  --primary-foreground: #11100e;
+
+  /* Deep Forest: #26382D */
+  --forest: #26382d;
+  --forest-deep: #1a261e;
+
+  /* Electric Teal: #5CE1E6 */
+  --teal: #5ce1e6;
+  --teal-glow: rgba(92, 225, 230, 0.28);
+
+  /* Stone Grey: #9C968B */
+  --stone: #9c968b;
+  --muted: #22201d;
+  --muted-foreground: #9c968b;
+
+  /* Light Parchment: #E8E0D0 */
+  --parchment: #e8e0d0;
+
+  /* UI Tokens */
+  --secondary: #22201d;
+  --secondary-foreground: #f2ede3;
+  --accent: #262420;
+  --accent-foreground: #f2ede3;
+  --destructive: #e5484d;
+  --destructive-foreground: #f2ede3;
+
+  --border: rgba(242, 237, 227, 0.12);
+  --border-subtle: rgba(242, 237, 227, 0.07);
+  --border-gold: rgba(198, 161, 91, 0.35);
+
+  --input: rgba(242, 237, 227, 0.16);
+  --ring: rgba(198, 161, 91, 0.65);
+
+  --shadow-lift-token: 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+  --shadow-arch-token: 0 32px 64px -24px rgba(0, 0, 0, 0.85);
+  --grid-line-color: rgba(242, 237, 227, 0.055);
+}
+
+/* ============================================================================
+ * LIGHT THEME VARIABLES (Warm Architectural Parchment Editorial)
+ * Primary Background: #E8E0D0 | Secondary / Card: #F2EDE3 | Primary Text: #11100E
+ * Secondary Text: #5E5A52 | Antique Gold: #C6A15B | Deep Forest: #26382D | Architectural Teal: #278F94
+ * ============================================================================ */
+:root.light,
+html.light,
+html[data-theme="light"],
+body.light,
+body[data-theme="light"],
+.light,
+[data-theme="light"] {
+  --radius: 0.125rem;
+
+  /* Warm Architectural Parchment base: #E8E0D0 */
+  --obsidian: #11100e;
+  --background: #e8e0d0;
+
+  /* Deep Obsidian text: #11100E */
+  --ivory: #11100e;
+  --foreground: #11100e;
+
+  /* Secondary / Cards (Warm Crisp Linen: #F2EDE3) */
+  --card: #f2ede3;
+  --card-foreground: #11100e;
+  --popover: #f2ede3;
+  --popover-foreground: #11100e;
+
+  /* Rich Antique Gold: #C6A15B */
+  --gold: #b38b3c;
+  --gold-hover: #9e782e;
+  --gold-muted: rgba(179, 139, 60, 0.25);
+  --primary: #b38b3c;
+  --primary-foreground: #f2ede3;
+
+  /* Deep Forest Green: #26382D */
+  --forest: #26382d;
+  --forest-deep: #1a261e;
+
+  /* Deep Restrained Architectural Teal: #278F94 */
+  --teal: #278f94;
+  --teal-glow: rgba(39, 143, 148, 0.25);
+
+  /* Muted Charcoal Stone / Secondary Text: #5E5A52 */
+  --stone: #5e5a52;
+  --muted: #ddd5c5;
+  --muted-foreground: #5e5a52;
+
+  /* Light Parchment tone: #F2EDE3 */
+  --parchment: #f2ede3;
+
+  /* UI Tokens */
+  --secondary: #ddd5c5;
+  --secondary-foreground: #11100e;
+  --accent: #d5cbba;
+  --accent-foreground: #11100e;
+  --destructive: #c93b2b;
+  --destructive-foreground: #f2ede3;
+
+  --border: rgba(17, 16, 14, 0.14);
+  --border-subtle: rgba(17, 16, 14, 0.08);
+  --border-gold: rgba(179, 139, 60, 0.45);
+
+  --input: rgba(17, 16, 14, 0.18);
+  --ring: rgba(179, 139, 60, 0.65);
+
+  --shadow-lift-token: 0 20px 50px -25px rgba(17, 16, 14, 0.18);
+  --shadow-arch-token: 0 24px 60px -20px rgba(17, 16, 14, 0.16);
+  --grid-line-color: rgba(17, 16, 14, 0.07);
+}
+
+/* Explicit Global Theme Transitions and Overrides */
+html.light,
+html.light body,
+html[data-theme="light"],
+html[data-theme="light"] body {
+  background-color: #e8e0d0;
+  color: #11100e;
+}
+
+html.dark,
+html.dark body,
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+  background-color: #11100e;
+  color: #f2ede3;
 }
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     border-color: var(--color-border);
+    transition:
+      border-color 0.4s var(--ease-calm),
+      outline-color 0.4s var(--ease-calm);
   }
 
   html {
     scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+    transition:
+      background-color 0.4s var(--ease-calm),
+      color 0.4s var(--ease-calm);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
@@ -100,91 +262,158 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition:
+      background-color 0.4s var(--ease-calm),
+      color 0.4s var(--ease-calm);
   }
 
   ::selection {
     background: var(--gold);
-    color: var(--background);
+    color: var(--primary-foreground);
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 }
 
-/* ---- Reusable design utilities ---- */
+/* ============================================================================
+ * DESIGN SYSTEM UTILITIES (Standard CSS Classes)
+ * ============================================================================ */
 
-@utility display {
+.display {
   font-family: var(--font-serif);
   font-weight: 300;
-  letter-spacing: -0.015em;
-  line-height: 1.02;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  text-wrap: balance;
 }
 
-@utility eyebrow {
+.display-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.eyebrow {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.32em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--gold);
 }
 
-@utility index-num {
+.index-num {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.24em;
-  color: color-mix(in oklab, var(--gold) 80%, transparent);
+  letter-spacing: 0.22em;
+  color: color-mix(in oklab, var(--gold) 90%, var(--foreground));
 }
 
-@utility rule-line {
+.rule-line {
   height: 1px;
   background: linear-gradient(
     to right,
-    color-mix(in oklab, var(--gold) 45%, transparent),
+    color-mix(in oklab, var(--gold) 60%, transparent),
     transparent
   );
 }
 
-@utility grain {
+.rule-line-center {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in oklab, var(--gold) 60%, transparent),
+    transparent
+  );
+}
+
+.grain {
   position: relative;
 }
-@utility grain-layer {
+
+.grain-layer {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.038;
   mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@utility hairline-grid {
+.hairline-grid {
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
-@utility card-heritage {
+.card-heritage {
   position: relative;
   background: linear-gradient(
     160deg,
-    color-mix(in oklab, var(--card) 92%, transparent),
+    color-mix(in oklab, var(--card) 94%, transparent),
     color-mix(in oklab, var(--background) 96%, transparent)
   );
   border: 1px solid var(--border);
   transition:
     transform 0.6s var(--ease-calm),
     border-color 0.6s var(--ease-calm),
-    box-shadow 0.6s var(--ease-calm);
+    box-shadow 0.6s var(--ease-calm),
+    background-color 0.6s var(--ease-calm);
 }
-@utility card-heritage-hover {
-  transform: translateY(-6px);
-  border-color: color-mix(in oklab, var(--gold) 55%, transparent);
-  box-shadow: var(--shadow-lift), 0 0 50px -26px var(--gold);
+
+.card-heritage-hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--gold) 50%, transparent);
+  box-shadow:
+    var(--shadow-lift),
+    0 0 45px -24px var(--gold);
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--background),
+    0 0 0 4px var(--gold);
+}
+
+.badge-tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border: 1px solid color-mix(in oklab, var(--teal) 35%, transparent);
+  background: color-mix(in oklab, var(--teal) 5%, transparent);
 }
 
 @keyframes vd-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
-@utility float-slow {
+
+.float-slow {
   animation: vd-float 7s ease-in-out infinite;
 }
