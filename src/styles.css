@@ -1,0 +1,190 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * Vidyarthi design system — Ancient Wisdom x Modern Technology.
+ * Charcoal + Ivory + Antique Gold, with sparing Electric Teal.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-gold: var(--gold);
+  --color-teal: var(--teal);
+  --color-forest: var(--forest);
+  --color-parchment: var(--parchment);
+  --color-stone: var(--stone);
+
+  --shadow-lift: 0 24px 60px -30px oklch(0 0 0 / 0.9);
+  --shadow-glow-gold: 0 0 40px -12px var(--gold);
+  --shadow-glow-teal: 0 0 44px -14px var(--teal);
+
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --radius: 0.125rem;
+
+  /* #11100E */
+  --background: oklch(0.163 0.006 67);
+  /* #F2EDE3 */
+  --foreground: oklch(0.944 0.014 86);
+  --card: oklch(0.203 0.007 67);
+  --card-foreground: oklch(0.944 0.014 86);
+  --popover: oklch(0.203 0.007 67);
+  --popover-foreground: oklch(0.944 0.014 86);
+  /* #C6A15B */
+  --primary: oklch(0.717 0.083 78);
+  --primary-foreground: oklch(0.163 0.006 67);
+  --secondary: oklch(0.24 0.008 67);
+  --secondary-foreground: oklch(0.944 0.014 86);
+  --muted: oklch(0.24 0.008 67);
+  /* #9C968B */
+  --muted-foreground: oklch(0.657 0.011 82);
+  --accent: oklch(0.26 0.01 78);
+  --accent-foreground: oklch(0.944 0.014 86);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.944 0.014 86);
+  --border: oklch(0.944 0.014 86 / 0.12);
+  --input: oklch(0.944 0.014 86 / 0.16);
+  --ring: oklch(0.717 0.083 78 / 0.5);
+
+  --gold: oklch(0.717 0.083 78);
+  /* #5CE1E6 */
+  --teal: oklch(0.861 0.109 195);
+  /* #26382D */
+  --forest: oklch(0.335 0.031 156);
+  /* #E8E0D0 */
+  --parchment: oklch(0.903 0.02 86);
+  --stone: oklch(0.657 0.011 82);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--background);
+  }
+}
+
+/* ---- Reusable design utilities ---- */
+
+@utility display {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@utility index-num {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  color: color-mix(in oklab, var(--gold) 80%, transparent);
+}
+
+@utility rule-line {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklab, var(--gold) 45%, transparent),
+    transparent
+  );
+}
+
+@utility grain {
+  position: relative;
+}
+@utility grain-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@utility hairline-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility card-heritage {
+  position: relative;
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--card) 92%, transparent),
+    color-mix(in oklab, var(--background) 96%, transparent)
+  );
+  border: 1px solid var(--border);
+  transition:
+    transform 0.6s var(--ease-calm),
+    border-color 0.6s var(--ease-calm),
+    box-shadow 0.6s var(--ease-calm);
+}
+@utility card-heritage-hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in oklab, var(--gold) 55%, transparent);
+  box-shadow: var(--shadow-lift), 0 0 50px -26px var(--gold);
+}
+
+@keyframes vd-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@utility float-slow {
+  animation: vd-float 7s ease-in-out infinite;
+}
